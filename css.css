@@ -1,0 +1,9 @@
+section{
+    direction: rtl;
+}
+.atas{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+}
