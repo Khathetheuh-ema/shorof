@@ -15,7 +15,22 @@ class Wajan {
         this.nama = nama;
         this.bab = bab;
     }
-    WajanArray(){return [ this.madhi,this.masdar,this.muthore,this.isimFail,this.isimMaful,this.fiilAmar,this.fiilNahyi,this.isimJaman,this.isimMakan,this.isimAlat]};
+    WajanArray(){return [ this.madhi,this.muthore,this.masdar,this.isimFail,this.isimMaful,this.fiilAmar,this.fiilNahyi,this.isimJaman,this.isimMakan,this.isimAlat]};
+
+    CreateElementTasrif(WajanArray){
+        let div = document.createElement('div');
+        let h2 = document.createElement('h2');
+        let p = document.createElement('p');
+
+        h2.innerText = `${this.nama} باب ${this.bab}`;
+        let inTextP = ''
+        WajanArray.forEach(e=>{
+            inTextP += ` ${e}`;
+            return inTextP;
+        })
+        console.log(inTextP);
+        
+    }
 }
 let sulasiMujarodBab1 = new Wajan("فَعَلَ","يَفْعُلُ","فَعْلاً","فَاعِلٌ","مَفْعُوْلٌ","اُفْعُلْ","لاَ تَفْعُلْ","مَفْعَلٌ","مَفْعَلٌ","مِفْعَلٌ",'الثلاثي المجرد','الاولى');
 
@@ -30,7 +45,8 @@ let sulasiMujarodBab5 = new Wajan("فَعُلَ","يَفْعُلُ","فُعْل�
 let sulasiMujarodBab6 = new Wajan( "فَعِلَ","يَفْعِلُ","فَعَلاً","فِعْلاَنً","فَاعِلٌ","مَفْعُوْلٌ","اِفْعِلْ","لاَ تَفْعِلْ","مَفْعِلٌ","مَفْعِلٌ","مِفْعَلٌ",'الثلاثي المجرد','السادس');
    
 
-//fungsi tampilkan tasrif
+//element tasrif
+
 
 const parse = new DOMParser();
 
