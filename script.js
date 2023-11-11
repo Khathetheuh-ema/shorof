@@ -1,5 +1,5 @@
 //variabel const
-const sulasiMujarod = [], sulasiMajid = [], rubaiMujarod = [], rubaiMajid = [];
+let sulasiMujarod = [], sulasiMajid = [], rubaiMujarod = [], rubaiMajid = [];
 class Wajan {
     constructor(madhi, muthore, masdar, isimFail, isimMaful, fiilAmar, fiilNahyi, isimJaman, isimMakan, isimAlat, nama, bab) {
         this.madhi = madhi;
@@ -15,62 +15,50 @@ class Wajan {
         this.nama = nama;
         this.bab = bab;
     }
-    WajanArray() { return [this.madhi, this.muthore, this.masdar, this.isimFail, this.isimMaful, this.fiilAmar, this.fiilNahyi, this.isimJaman, this.isimMakan, this.isimAlat] };
+    WajanArray() { return [this.madhi, this.muthore, this.masdar,'فَهُوَ', this.isimFail,'وَذَاكَ', this.isimMaful, this.fiilAmar, this.fiilNahyi, this.isimJaman, this.isimMakan, this.isimAlat] };
 
-    CreateElementTasrif(WajanArray) {
+    CreateElementTasrif(WajanArray,elementParent) {
         let div = document.createElement('div');
         let h2 = document.createElement('h2');
         let p = document.createElement('p');
 
         h2.innerText = `${this.nama} باب ${this.bab}`;
-        let inTextP = ''
-        for (let i = 0; i < WajanArray.length; i++) {
-            if (i == 3 && typeof(WajanArray[i])=='string') {
-                inTextP += ` فَهُوَ ${WajanArray[i]}`
-                // return inTextP
+        let inTextP = WajanArray
+        inTextP.forEach(w => {
+            if(typeof(w)=='object'){
+                let span = document.createElement('span');
+                span.innerText = w.join(' ');
+                p.appendChild(span);
+            }else{
+            let span = document.createElement('span');
+            span.innerText = ` ${w}`
+            p.appendChild(span);
             }
-            if (i == 4 && typeof(WajanArray[i])=='string') {
-                inTextP += ` وَذَاكَ ${WajanArray[i]}`;
-                // return inTextP
-            }
-            if (typeof(WajanArray[i]) != 'string') {
-                for (let b = 0; b > WajanArray[i].length; b++) {
-                    if(i==3){
-                        inTextP += ` فَهُوَ ${WajanArray[i][b]}`
-                    }
-                    if(i==4){
-                        inTextP += ` وَذَاكَ ${WajanArray[i][b]}`
-                    }
-                    inTextP += ` ${WajanArray[i][b]}`
-                }
-            }
-            inTextP += ` ${WajanArray[i]}`
-            // return inTextP
-
-        }
-        console.log(inTextP);
-
+        });
+        div.appendChild(h2);
+        div.appendChild(p);
+        elementParent.appendChild(div);
     }
 }
 let sulasiMujarodBab1 = new Wajan("فَعَلَ", "يَفْعُلُ", "فَعْلاً", "فَاعِلٌ", "مَفْعُوْلٌ", "اُفْعُلْ", "لاَ تَفْعُلْ", "مَفْعَلٌ", "مَفْعَلٌ", "مِفْعَلٌ", 'الثلاثي المجرد', 'الاولى');
+sulasiMujarod.push(sulasiMujarodBab1);
 
 let sulasiMujarodBab2 = new Wajan("فَعَلَ", "يَفْعِلُ", "فَعْلاً", "فَاعِلٌ", "مَفْعُوْلٌ", "اِفْعِلْ", "لاَ تَفْعِلْ", "مَفْعِلٌ", "مَفْعِلٌ", "مِفْعَلٌ", 'الثلاثي المجرد', 'الثاني');
+sulasiMujarod.push(sulasiMujarodBab2);
 
 let sulasiMujarodBab3 = new Wajan("فَعَلَ", "يَفْعَلُ", "فَعْلاً", "فَاعِلٌ", "مَفْعُوْلٌ", "اِفْعَلْ", "لاَ تَفْعَلْ", "مَفْعَلٌ", "مَفْعَلٌ", "مِفْعَلٌ", 'الثلاثي المجرد', 'الثالث');
+sulasiMujarod.push(sulasiMujarodBab3);
 
 let sulasiMujarodBab4 = new Wajan("فَعِلَ", "يَفْعَلُ", "فِعْلاً", "فَاعِلٌ", "مَفْعُوْلٌ", "اِفْعَلْ", "لاَ تَفْعَلْ", "مَفْعَلٌ", "مَفْعَلٌ", "مِفْعَلٌ", 'الثلاثي المجرد', 'الرابع');
+sulasiMujarod.push(sulasiMujarodBab4);
 
 let sulasiMujarodBab5 = new Wajan("فَعُلَ", "يَفْعُلُ", "فُعْلاً", ["فَاعِلٌ", "فَعَلٌ", "فَعِيْلٌ"], "مَفْعُوْلٌ بِهِ", "اُفْعُلْ", "لاَ تَفْعُلْ", "مَفْعَلٌ", "مَفْعَلٌ", "-", 'الثلاثي المجرد', 'الخامس');
+sulasiMujarod.push(sulasiMujarodBab5);
 
 let sulasiMujarodBab6 = new Wajan("فَعِلَ", "يَفْعِلُ", "فَعَلاً", "فِعْلاَنً", "فَاعِلٌ", "مَفْعُوْلٌ", "اِفْعِلْ", "لاَ تَفْعِلْ", "مَفْعِلٌ", "مَفْعِلٌ", "مِفْعَلٌ", 'الثلاثي المجرد', 'السادس');
-
-
-//element tasrif
-
+sulasiMujarod.push(sulasiMujarodBab6);
 
 const parse = new DOMParser();
-
-
 const iconMalam = parse.parseFromString(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
 <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
 <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
@@ -88,3 +76,9 @@ tombol[0].onclick = function () {
         this.replaceChild(iconSiang, this.childNodes[0]);
     }
 }
+const idTasrif = document.querySelector('#tasrif');
+let headerS_Mujarod = document.createElement('h1');
+headerS_Mujarod.innerText = 'للثلاثي المجرد الابواب'
+sulasiMujarod.forEach(e =>{
+    e.CreateElementTasrif(e.WajanArray(),idTasrif);
+})
